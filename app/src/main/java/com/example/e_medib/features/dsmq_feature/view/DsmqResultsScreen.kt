@@ -9,9 +9,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Card
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -32,6 +36,7 @@ import androidx.navigation.NavController
 import com.example.e_medib.features.dsmq_feature.view_model.DsmqViewModel
 import com.example.e_medib.ui.theme.mBlack
 import com.example.e_medib.ui.theme.mLightBlue
+import com.example.e_medib.ui.theme.mWhite
 import com.example.e_medib.utils.CustomDataStore
 import com.google.accompanist.pager.ExperimentalPagerApi
 
@@ -70,6 +75,14 @@ fun DsmqResultsScreen(
                         color = Color.White
                     )
                 },
+                navigationIcon = {
+                                 IconButton(onClick = { navController.popBackStack() }) {
+                                     Icon(
+                                         imageVector = Icons.Filled.ArrowBack,
+                                         contentDescription ="arrow_back",
+                                         tint = mWhite)
+                                 }
+                },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = mLightBlue)
             )
         }
@@ -102,7 +115,7 @@ fun DsmqResultsScreen(
 
             //date text
 
-            Text(text = "Fill Date: ${viewModel.dsmqResults?.data?.fill_date}",
+            Text(text = "DSMQ Fill Date: ${viewModel.dsmqResults?.data?.fill_date}",
                  style = MaterialTheme.typography.headlineMedium,
                 fontSize = 16.sp,
                 textAlign = TextAlign.Center,
