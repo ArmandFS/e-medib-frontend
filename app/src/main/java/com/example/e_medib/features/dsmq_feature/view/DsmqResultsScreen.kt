@@ -212,7 +212,7 @@ fun CustomProfileCard(
         modifier = modifier
             .fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(2.dp, color = mBlack),
+        border = BorderStroke(1.dp, color = mLightBlue),
         colors = CardDefaults.cardColors(containerColor = Color.White)
 
 

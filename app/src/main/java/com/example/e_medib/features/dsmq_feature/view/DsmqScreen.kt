@@ -178,8 +178,19 @@ fun DsmqScreen(
             if (showSubmitDialog) {
                 AlertDialog(
                     onDismissRequest = { showSubmitDialog = false },
-                    title = { Text(text = "Selesai Kuesioner") },
-                    text = { Text(text = "Apakah anda yakin menyelesaikan kuesioner ini? Mohon mengisi semua entri terlebih dahulu jika belum.") },
+                    title = {
+                        Text(
+                            text = "Selesai Kuesioner",
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.fillMaxWidth()
+                        ) },
+                    text = {
+                        Text(
+                            text = "Apakah anda yakin menyelesaikan kuesioner ini? Mohon mengisi semua entri terlebih dahulu jika belum.",
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.fillMaxWidth()
+                    ) },
                     confirmButton = {
                         Button(
                             onClick = {
@@ -196,7 +207,8 @@ fun DsmqScreen(
                                 selectedAnswers.clear()
                                 justSubmitted = true
                             },
-                            colors = ButtonDefaults.buttonColors(containerColor = lightGreen)
+                            colors = ButtonDefaults.buttonColors(containerColor = lightGreen),
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
                         ) {
                             Text(text = "Iya", color = Color.White)
                         }
@@ -204,7 +216,8 @@ fun DsmqScreen(
                     dismissButton = {
                         Button(
                             onClick = { showSubmitDialog = false },
-                            colors = ButtonDefaults.buttonColors(containerColor = redColor)
+                            colors = ButtonDefaults.buttonColors(containerColor = redColor),
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
                         ) {
                             Text(text = "Tidak", color = Color.White)
                         }
