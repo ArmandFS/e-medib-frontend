@@ -8,10 +8,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -90,7 +93,8 @@ fun DsmqResultsScreen(
         Column(
             modifier = Modifier
                 .padding(16.dp)
-                .fillMaxSize(),
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
                  horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(62.dp))
@@ -111,63 +115,71 @@ fun DsmqResultsScreen(
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF32CD32)
                 )
-
-            //date text
-
-            Text(text = "DSMQ Fill Date: ${viewModel.dsmqResults?.data?.fill_date}",
-                 style = MaterialTheme.typography.headlineMedium,
-                fontSize = 26.sp,
-                textAlign = TextAlign.Center,
-                color = mLightBlue
-                )
-
-            //description
+            Spacer(modifier = Modifier.height(16.dp))
             CustomProfileCard(
                 header = {
                     Text(
-                        text = "Keterangan",
+                        text = "Membutuhkan Peningkatan",
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(bottom = 4.dp),
                         style = MaterialTheme.typography.headlineSmall,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center,
-                        color = mBlack
-                        )
+                        color = Color.Red
+                    )
                 },
                 body = {
-                    Column(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalAlignment = Alignment.Start)
-                    {
-                        TextSection(
-                            text = "Nilai Anda itu berdasarkan Diabetes Self-Management Questionnaire (DSMQ), yang menilai aktivitas perawatan diri terkait kontrol glikemik.",
-                            color = Color.DarkGray
-                        )
-                        Spacer(modifier = Modifier.height(8.dp))
-                        TextSection(
-                            text = "0 - 18: Membutuhkan Peningkatan\nAktivitas perawatan diri Anda memerlukan peningkatan yang signifikan untuk kontrol glikemik yang lebih baik.",
-                            color = Color.Red
-                        )
-                        Spacer(modifier = Modifier.height(8.dp))
-                        TextSection(
-                            text = "18 - 30: Average\nAktivitas perawatan diri Anda rata-rata, namun masih ada ruang untuk perbaikan.",
-                            color = Color.Yellow
-                        )
-                        Spacer(modifier = Modifier.height(8.dp))
-                        TextSection(
-                            text = "30 - 48: Bagus\nAktivitas perawatan diri Anda baik dan mendukung pengendalian glikemik yang efektif.",
-                            color = Color.Green
-                        )
-                        Spacer(modifier = Modifier.height(8.dp))
-                        TextSection(
-                            text = "Rekomendasi: Pertahankan kebiasaan Anda saat ini dan terus up-to-date tentang manajemen diabetes.",
-                            color = Color.Blue
-                        )
-                       }
-                    },
-                )
-           }
+                    TextSection(
+                        text = "0 - 18: Aktivitas perawatan diri Anda memerlukan peningkatan yang signifikan untuk kontrol glikemik yang lebih baik.\nRekomendasi: Berkonsultasi dengan penyedia layanan kesehatan Anda untuk mengembangkan rencana perawatan diri yang lebih baik.",
+                        color = mBlack
+                    )
+                },
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            CustomProfileCard(
+                header = {
+                    Text(
+                        text = "Average",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 4.dp),
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        color = Color(0xFFCBDC0D)
+                    )
+                },
+                body = {
+                    TextSection(
+                        text = "18 - 30: Aktivitas perawatan diri Anda rata-rata, namun masih ada ruang untuk perbaikan.\nRekomendasi: Lanjutkan upaya Anda dan mintalah saran untuk perbaikan berkelanjutan.",
+                        color = mBlack
+                    )
+                },
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            CustomProfileCard(
+                header = {
+                    Text(
+                        text = "Bagus",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 4.dp),
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        color = Color(0xFF20D933)
+                    )
+                },
+                body = {
+                    TextSection(
+                        text = "30 - 48: Aktivitas perawatan diri Anda baik dan mendukung pengendalian glikemik yang efektif.\nRekomendasi: Pertahankan kebiasaan Anda saat ini dan terus up-to-date tentang manajemen diabetes.",
+                        color = mBlack
+                    )
+                },
+            )
+
+        }
 
     }
 }
@@ -201,6 +213,7 @@ fun CustomProfileCard(
             .fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         border = BorderStroke(2.dp, color = mBlack),
+        colors = CardDefaults.cardColors(containerColor = Color.White)
 
 
     ) {
