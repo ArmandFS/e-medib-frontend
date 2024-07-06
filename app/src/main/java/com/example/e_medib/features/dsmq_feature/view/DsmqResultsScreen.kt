@@ -62,7 +62,6 @@ fun DsmqResultsScreen(
         viewModel.fetchResultsByUserId(headerMap )
     })
 
-
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -96,18 +95,18 @@ fun DsmqResultsScreen(
         ) {
             Spacer(modifier = Modifier.height(62.dp))
             Text(
-                text =  "DSMQ Results",
+                text =  "Hasil DSMQ Anda",
                 style = MaterialTheme.typography.headlineLarge,
-                fontSize = 30.sp,
+                fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(20.dp))
             //score text
             Text(
-                text = "Score: ${viewModel.dsmqResults?.data?.score }",
+                text = "${viewModel.dsmqResults?.data?.score }",
                 style = MaterialTheme.typography.headlineLarge,
-                fontSize = 20.sp,
+                fontSize = 60.sp,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF32CD32)
@@ -117,7 +116,7 @@ fun DsmqResultsScreen(
 
             Text(text = "DSMQ Fill Date: ${viewModel.dsmqResults?.data?.fill_date}",
                  style = MaterialTheme.typography.headlineMedium,
-                fontSize = 16.sp,
+                fontSize = 26.sp,
                 textAlign = TextAlign.Center,
                 color = mLightBlue
                 )
@@ -137,32 +136,55 @@ fun DsmqResultsScreen(
                         )
                 },
                 body = {
-                    Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start) {
-                        Text(
-                            text = "Nilai Anda itu berdasarkan Diabetes Self-Management Questionnaire (DSMQ), " +
-                                    "yang menilai aktivitas perawatan diri terkait kontrol glikemik. " +
-                                    "Nilai berjangkau dari 0 sampai dengan 48.\n\n" +
-                                    "0 - 18: Membutuhkan Peningkatan\n Aktivitas perawatan diri Anda memerlukan peningkatan yang signifikan untuk kontrol glikemik yang lebih baik." +
-                                    "\nRekomendasi: Berkonsultasi dengan penyedia layanan kesehatan Anda untuk mengembangkan rencana perawatan diri yang lebih baik.\n\n" +
-                                    "18 - 30: Average\n Aktivitas perawatan diri Anda rata-rata, namun masih ada ruang untuk perbaikan." +
-                                    "\nRekomendasi: Lanjutkan upaya Anda dan mintalah saran untuk perbaikan berkelanjutan. \n\n" +
-                                    "30 - 48: Bagus \n Aktivitas perawatan diri Anda baik dan mendukung pengendalian glikemik yang efektif" +
-                                    "\nRekomendasi: Pertahankan kebiasaan Anda saat ini dan terus up-to-date tentang manajemen diabetes.",
-
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(bottom = 4.dp),
-                            style = MaterialTheme.typography.bodyMedium,
-                            fontWeight = FontWeight.Normal,
-                            textAlign = TextAlign.Justify,
-                            color = mBlack
-                           )
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.Start)
+                    {
+                        TextSection(
+                            text = "Nilai Anda itu berdasarkan Diabetes Self-Management Questionnaire (DSMQ), yang menilai aktivitas perawatan diri terkait kontrol glikemik.",
+                            color = Color.DarkGray
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        TextSection(
+                            text = "0 - 18: Membutuhkan Peningkatan\nAktivitas perawatan diri Anda memerlukan peningkatan yang signifikan untuk kontrol glikemik yang lebih baik.",
+                            color = Color.Red
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        TextSection(
+                            text = "18 - 30: Average\nAktivitas perawatan diri Anda rata-rata, namun masih ada ruang untuk perbaikan.",
+                            color = Color.Yellow
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        TextSection(
+                            text = "30 - 48: Bagus\nAktivitas perawatan diri Anda baik dan mendukung pengendalian glikemik yang efektif.",
+                            color = Color.Green
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        TextSection(
+                            text = "Rekomendasi: Pertahankan kebiasaan Anda saat ini dan terus up-to-date tentang manajemen diabetes.",
+                            color = Color.Blue
+                        )
                        }
                     },
                 )
            }
 
     }
+}
+
+
+@Composable
+fun TextSection(text: String, color: Color){
+    Text(
+        text = text,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 4.dp),
+        style = MaterialTheme.typography.bodyMedium,
+        fontWeight = FontWeight.Normal,
+        textAlign = TextAlign.Justify,
+        color = color
+    )
 }
 
 
@@ -178,7 +200,9 @@ fun CustomProfileCard(
         modifier = modifier
             .fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(2.dp, color = mLightBlue),
+        border = BorderStroke(2.dp, color = mBlack),
+
+
     ) {
         Column(
             modifier = modifier.padding(24.dp),
