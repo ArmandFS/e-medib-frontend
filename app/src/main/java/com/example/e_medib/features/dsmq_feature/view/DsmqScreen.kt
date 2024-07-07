@@ -1,17 +1,19 @@
 package com.example.e_medib.features.dsmq_feature.view
 
 import android.util.Log
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Calculate
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -176,7 +178,7 @@ fun DsmqScreen(
                 }
             }
             if (showSubmitDialog) {
-                AlertDialog(
+                androidx.compose.material.AlertDialog(
                     onDismissRequest = { showSubmitDialog = false },
                     title = {
                         Text(
@@ -191,40 +193,52 @@ fun DsmqScreen(
                             textAlign = TextAlign.Center,
                             modifier = Modifier.fillMaxWidth()
                     ) },
-                    confirmButton = {
-                        Button(
-                            onClick = {
-                                val headerMap = mutableMapOf<String, String>()
-                                headerMap["Accept"] = "application/json"
-                                headerMap["Authorization"] = "Bearer ${tokenText.value}"
-                                showSubmitDialog = false
-                                Log.d("selected Answer", selectedAnswers.toString())
-                                viewModel.submitAnswers(
-                                    answers = selectedAnswers.toList(),
-                                    fillDate = selectedDate,
-                                    headers = headerMap)
-                                startQuestionnaire = false
-                                selectedAnswers.clear()
-                                justSubmitted = true
-                            },
-                            colors = ButtonDefaults.buttonColors(containerColor = lightGreen),
-                            modifier = Modifier.align(Alignment.CenterHorizontally)
+
+                    buttons = {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 16.dp), // Add padding at the bottom
+                            horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-                            Text(text = "Iya", color = Color.White)
-                        }
-                    },
-                    dismissButton = {
-                        Button(
-                            onClick = { showSubmitDialog = false },
-                            colors = ButtonDefaults.buttonColors(containerColor = redColor),
-                            modifier = Modifier.align(Alignment.CenterHorizontally)
-                        ) {
-                            Text(text = "Tidak", color = Color.White)
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 16.dp), // Add padding to the sides
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                Button(
+                                    onClick = {
+                                        val headerMap = mutableMapOf<String, String>()
+                                        headerMap["Accept"] = "application/json"
+                                        headerMap["Authorization"] = "Bearer ${tokenText.value}"
+                                        showSubmitDialog = false
+                                        Log.d("selected Answer", selectedAnswers.toString())
+                                        viewModel.submitAnswers(
+                                            answers = selectedAnswers.toList(),
+                                            fillDate = selectedDate,
+                                            headers = headerMap
+                                        )
+                                        startQuestionnaire = false
+                                        selectedAnswers.clear()
+                                        justSubmitted = true
+                                    },
+                                    colors = ButtonDefaults.buttonColors(containerColor = lightGreen)
+                                ) {
+                                    Text(text = "Iya", color = Color.White)
+                                }
+                                Spacer(modifier = Modifier.width(16.dp))
+                                Button(
+                                    onClick = { showSubmitDialog = false },
+                                    colors = ButtonDefaults.buttonColors(containerColor = redColor)
+                                ) {
+                                    Text(text = "Tidak", color = Color.White)
+                                }
+                            }
                         }
                     }
                 )
             }
-
 
             androidx.compose.material.Text(
                 text = "Mohon mengisi Kuesioner DSMQ terlebih dahulu untuk melihat hasil DSMQ.",
