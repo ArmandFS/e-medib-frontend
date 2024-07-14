@@ -8,7 +8,7 @@ E-Medib is an Android application designed to monitor, document, and assess the 
 - Integration with DSMQ
 - User-Friendly Interface
 ## UI/UX Design
-The UI/UX design for E-Medib was crafted using Figma, focusing on a user-friendly and intuitive experience for patients and healthcare providers.
+The UI/UX design for E-Medib was made using Figma, focusing on a user-friendly and intuitive experience for diabetic patients and healthcare providers.
 ## API Integration
 The E-Medib application integrates with the backend using RESTful APIs. All API requests and responses are handled asynchronously using Retrofit and Kotlin coroutines.
 ### Authentication
