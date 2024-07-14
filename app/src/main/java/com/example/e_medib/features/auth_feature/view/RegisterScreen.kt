@@ -16,6 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Checkbox
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Icon
@@ -96,6 +97,7 @@ fun RegisterScreen(
     val showPassword = rememberSaveable() { mutableStateOf(false) }
     val showRepeatPassword = rememberSaveable() { mutableStateOf(false) }
     val keyboardController = LocalSoftwareKeyboardController.current
+    val agreementChecked = rememberSaveable { mutableStateOf(false) }
     val isValidInputs = remember(
         namaLengkap.value,
         username.value,
@@ -107,6 +109,7 @@ fun RegisterScreen(
         beratBadan.value,
         password.value,
         repeatPassword.value,
+        agreementChecked.value
     ) {
         namaLengkap.value.trim().isNotEmpty() && username.value.trim()
             .isNotEmpty() && nik.value.trim().isNotEmpty() && email.value.trim()
@@ -187,7 +190,6 @@ fun RegisterScreen(
                 trailingIcon = null,
                 keyboardType = KeyboardType.Text,
                 imeAction = ImeAction.Next,
-
                 )
 
             // USERNAME
@@ -342,8 +344,6 @@ fun RegisterScreen(
                 keyboardType = KeyboardType.Number,
                 imeAction = ImeAction.Next,
             )
-
-
             // TINGGI BADAN && BERAT BADAN
             Row(
                 modifier = Modifier
@@ -416,11 +416,8 @@ fun RegisterScreen(
                         keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Next,
                     )
-
                 }
-
             }
-
             // PASSWORD
             Text(
                 text = "Password",
@@ -474,6 +471,24 @@ fun RegisterScreen(
                 fontWeight = FontWeight.Normal,
                 color = mLightBlue
             )
+            Spacer(modifier = Modifier.height(32.dp))
+
+            //agreement box
+            Row (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                Checkbox(
+                      checked = agreementChecked.value,
+                      onCheckedChange = { agreementChecked.value = it}
+                )
+                Text(
+                    text = "Dengan memetik box ini, saya setuju dll",
+                    style = MaterialTheme.typography.body2,
+                    color = mBlack)
+            }
             Spacer(modifier = Modifier.height(32.dp))
 
             // BUTTON
