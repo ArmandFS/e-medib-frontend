@@ -51,6 +51,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -471,13 +472,12 @@ fun RegisterScreen(
                 fontWeight = FontWeight.Normal,
                 color = mLightBlue
             )
-            Spacer(modifier = Modifier.height(32.dp))
-
+            Spacer(modifier = Modifier.height(3.dp))
             //agreement box
             Row (
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 16.dp),
+                    .padding(top = 6.dp),
                 verticalAlignment = Alignment.CenterVertically
             ){
                 Checkbox(
@@ -485,12 +485,17 @@ fun RegisterScreen(
                       onCheckedChange = { agreementChecked.value = it}
                 )
                 Text(
-                    text = "Dengan memetik box ini, saya setuju dll",
+                    text = "Dengan mencentang kotak ini, Anda mengonfirmasi untuk membagikan data medis diabetes pribadi Anda.",
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(start = 8.dp),
                     style = MaterialTheme.typography.body2,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Justify,
+                    fontSize = 12.sp,
                     color = mBlack)
             }
-            Spacer(modifier = Modifier.height(32.dp))
-
+            Spacer(modifier = Modifier.height(22.dp))
             // BUTTON
             Button(
                 onClick = {
