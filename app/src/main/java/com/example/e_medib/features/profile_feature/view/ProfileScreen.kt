@@ -81,6 +81,7 @@ fun ProfileScreen(
     homeViewModel: HomeViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
+    var showPolicyDialog by remember { mutableStateOf(false) }
     var showLogoutDialog by remember {
         mutableStateOf(false)
     }
@@ -194,7 +195,7 @@ fun ProfileScreen(
                 title = "Kebijakan Privasi",
                 subtitle = "Kebijakan mengenai keamanan akunmu",
                 leadingIcon = Icons.Outlined.Visibility,
-                onClick = {}
+                onClick = { showPolicyDialog = true }
             )
             CustomProfileListTile(
                 title = "Disclaimer",
@@ -236,6 +237,11 @@ fun ProfileScreen(
                 }
             })
         })
+    }
+
+    //privacy dialog
+    if (showPolicyDialog) {
+        PolicyDialog(onDismiss = { showPolicyDialog = false })
     }
 
     // LOADING OVERLAY

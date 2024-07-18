@@ -62,7 +62,7 @@ fun PolicyDialog(
             ) {
                 Text(
                     text = buildAnnotatedString {
-                        append("\u2022 Identitas pengguna, termasuk nama dan tanggal lahir, akan digunakan dalam aplikasi ini.")
+                        append("Identitas pengguna, termasuk nama dan tanggal lahir, akan digunakan dalam aplikasi ini.")
                     },
                     textAlign = TextAlign.Justify,
                     fontSize = 14.sp,
@@ -71,7 +71,7 @@ fun PolicyDialog(
                 Divider(modifier = Modifier.padding(vertical = 8.dp), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
                 Text(
                     text = buildAnnotatedString {
-                        append("\u2022 Data medis diabetes pengguna akan digunakan dalam aplikasi ini.")
+                        append("Data medis diabetes pengguna akan digunakan dalam aplikasi ini.")
                     },
                     textAlign = TextAlign.Justify,
                     fontSize = 14.sp,
@@ -80,7 +80,7 @@ fun PolicyDialog(
                 Divider(modifier = Modifier.padding(vertical = 8.dp), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
                 Text(
                     text = buildAnnotatedString {
-                        append("\u2022 Data pengguna akan aman dan terjamin selama pengguna bertanggung jawab atas keamanan kredensialnya sendiri.")
+                        append("Data pengguna akan aman dan terjamin selama pengguna bertanggung jawab atas keamanan kredensialnya sendiri.")
                     },
                     textAlign = TextAlign.Justify,
                     fontSize = 14.sp,
