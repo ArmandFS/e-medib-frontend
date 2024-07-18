@@ -75,8 +75,13 @@ fun InfoAlertDialog(
                 )
                 Divider(modifier = Modifier.padding(vertical = 8.dp), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
                 Text(
-                    text = "Kuesioner ini membantu dalam mengevaluasi seberapa efektif seseorang dengan diabetes " +
-                            "mengelola kondisinya dalam berbagai aspek perawatan diri, seperti pola makan, kepatuhan terhadap obat, olahraga, dan lain-lain.",
+                    text = buildAnnotatedString {
+                        append("Kuesioner ini membantu dalam mengevaluasi seberapa efektif seseorang dengan diabetes mengelola kondisinya dalam berbagai aspek")
+                        withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)){
+                            append(" perawatan diri")
+                        }
+                        append(", seperti pola makan, kepatuhan terhadap obat, olahraga, dan lain-lain.")
+                    },
                     textAlign = TextAlign.Justify,
                     fontSize = 14.sp,
                     color = MaterialTheme.colorScheme.onBackground
