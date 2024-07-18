@@ -32,9 +32,11 @@ import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -43,12 +45,15 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -59,6 +64,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.e_medib.features.auth_feature.model.DataRegisterModel
 import com.example.e_medib.features.auth_feature.view.components.CustomLoginInputField
 import com.example.e_medib.features.auth_feature.view_model.AuthViewModel
+import com.example.e_medib.features.profile_feature.view.PolicyDialog
 import com.example.e_medib.features.profile_feature.view_model.ProfileViewModel
 import com.example.e_medib.ui.theme.mBlack
 import com.example.e_medib.ui.theme.mGrayScale
@@ -99,6 +105,7 @@ fun RegisterScreen(
     val showRepeatPassword = rememberSaveable() { mutableStateOf(false) }
     val keyboardController = LocalSoftwareKeyboardController.current
     val agreementChecked = rememberSaveable { mutableStateOf(false) }
+    var showPolicyDialog by remember { mutableStateOf(false) }
     val isValidInputs = remember(
         namaLengkap.value,
         username.value,
@@ -482,15 +489,29 @@ fun RegisterScreen(
             ){
                 Checkbox(
                       checked = agreementChecked.value,
-                      onCheckedChange = { agreementChecked.value = it}
-                )
+                      onCheckedChange = { agreementChecked.value = it},
+                    )
                 Text(
-                    text = "Dengan mencentang kotak ini, Anda mengonfirmasi untuk membagikan data medis diabetes pribadi Anda.",
+                    text = buildAnnotatedString {
+                        append("Dengan mencentang kotak ini, Anda setuju dengan ")
+                        pushStringAnnotation(
+                            tag = "PrivacyPolicy",
+                            annotation = "Kebijakan Keamanan Data"
+                        )
+                        withStyle(style = SpanStyle(color = mLightBlue)){
+                            append("Kebijakan Keamanan Data")
+                        }
+                        pop()
+                        append("dan membagikan data kesehatan diabetes pribadi Anda")
+                    },
                     modifier = Modifier
                         .weight(1f)
-                        .padding(start = 8.dp),
+                        .padding(start = 8.dp)
+                        .clickable {
+                            showPolicyDialog = true
+                        }
+                    ,
                     style = MaterialTheme.typography.body2,
-                    fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Justify,
                     fontSize = 12.sp,
                     color = mBlack)
@@ -549,6 +570,11 @@ fun RegisterScreen(
                     fontWeight = FontWeight.SemiBold,
                     color = mWhite
                 )
+            }
+
+
+            if (showPolicyDialog) {
+                PolicyDialog(onDismiss = { showPolicyDialog = false })
             }
 
             if (!isEditProfile)
