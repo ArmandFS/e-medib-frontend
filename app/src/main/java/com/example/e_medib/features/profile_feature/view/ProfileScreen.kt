@@ -1,18 +1,49 @@
 package com.example.e_medib.features.profile_feature.view
 
 import CustomLoadingOverlay
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Card
+import androidx.compose.material.Divider
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedButton
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
-import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.outlined.Calculate
+import androidx.compose.material.icons.outlined.FileDownload
+import androidx.compose.material.icons.outlined.HelpOutline
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Logout
+import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,7 +66,11 @@ import com.example.e_medib.features.home_feature.view.CustomRowInfo
 import com.example.e_medib.features.home_feature.view_model.HomeViewModel
 import com.example.e_medib.features.profile_feature.view_model.ProfileViewModel
 import com.example.e_medib.navigations.AppScreen
-import com.example.e_medib.ui.theme.*
+import com.example.e_medib.ui.theme.mBlack
+import com.example.e_medib.ui.theme.mGrayScale
+import com.example.e_medib.ui.theme.mLightBlue
+import com.example.e_medib.ui.theme.mLightGrayScale
+import com.example.e_medib.ui.theme.mWhite
 import com.example.e_medib.utils.CustomDataStore
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -115,7 +150,6 @@ fun ProfileScreen(
                     color = mLightBlue
                 )
             }
-
             // DETAIL AKUN
             Text(
                 text = "Detail Akun",
@@ -126,12 +160,6 @@ fun ProfileScreen(
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Start,
                 color = mBlack
-            )
-            CustomProfileListTile(
-                title = "Profil Saya",
-                subtitle = "Informasi akunmu",
-                leadingIcon = Icons.Outlined.Person,
-                onClick = {}
             )
             CustomProfileListTile(
                 title = "Kalkulator BMI/BMR",
