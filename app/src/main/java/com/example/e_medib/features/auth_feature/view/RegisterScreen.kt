@@ -502,7 +502,7 @@ fun RegisterScreen(
                             append("Kebijakan Keamanan Data")
                         }
                         pop()
-                        append("dan membagikan data kesehatan diabetes pribadi Anda")
+                        append(" dan membagikan data kesehatan diabetes pribadi Anda")
                     },
                     modifier = Modifier
                         .weight(1f)
