@@ -61,8 +61,15 @@ fun PolicyDialog(
                     .padding(horizontal = 6.dp, vertical = 8.dp)
             ) {
                 Text(
+                    text = "Identitas Anda",
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Text(
                     text = buildAnnotatedString {
-                        append("Identitas pengguna, termasuk nama dan tanggal lahir, akan digunakan dalam aplikasi ini.")
+                        append("Identitas Anda, termasuk nama dan tanggal lahir, akan digunakan dalam aplikasi ini.")
                     },
                     textAlign = TextAlign.Justify,
                     fontSize = 14.sp,
@@ -70,14 +77,28 @@ fun PolicyDialog(
                 )
                 Divider(modifier = Modifier.padding(vertical = 8.dp), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
                 Text(
+                    text = "Data Kesehatan",
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Text(
                     text = buildAnnotatedString {
-                        append("Data medis diabetes pengguna akan digunakan dalam aplikasi ini.")
+                        append("Data kesehatan diabetes pengguna akan digunakan dalam aplikasi ini.")
                     },
                     textAlign = TextAlign.Justify,
                     fontSize = 14.sp,
                     color = MaterialTheme.colorScheme.onBackground
                 )
                 Divider(modifier = Modifier.padding(vertical = 8.dp), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
+                Text(
+                    text = "Keamanan Data",
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.fillMaxWidth()
+                )
                 Text(
                     text = buildAnnotatedString {
                         append("Data pengguna akan aman dan terjamin selama pengguna bertanggung jawab atas keamanan kredensialnya sendiri.")
