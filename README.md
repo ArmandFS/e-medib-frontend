@@ -1,11 +1,6 @@
 ---
 # E-Medib Android Application
 
-
-![home1](https://github.com/user-attachments/assets/5f296960-6968-4567-ab30-406eec813549)
-![home2](https://github.com/user-attachments/assets/fee0812a-79e2-40f7-a4e1-d46e4da1152f)
-![dsmqpage](https://github.com/user-attachments/assets/5b7d9189-c798-4447-b1e0-e7e66b1099dd)
-
 E-Medib is an Android application designed to monitor, document, and assess the condition of Diabetes Mellitus type 1 and 2 patients. The frontend of this application is built using Kotlin, Jetpack Compose, and XML, and is developed in Android Studio. The backend is powered by Laravel, with MySQL as the database. Authentication and API testing were done using Postman.
 ## Features
 - User Authentication (Registration, Login, Logout)
