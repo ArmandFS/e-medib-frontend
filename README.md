@@ -26,8 +26,6 @@ The E-Medib application integrates with the backend using RESTful APIs. All API 
 - **DSMQ Assessment:** Endpoints to handle DSMQ data integration and management.
 
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ---
 
-Feel free to customize this `README.md` file according to your specific project requirements and preferences.
+
