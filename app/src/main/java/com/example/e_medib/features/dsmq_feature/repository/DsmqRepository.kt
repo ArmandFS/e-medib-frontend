@@ -54,29 +54,4 @@ class DsmqRepository @Inject constructor(private val api: EMedibApi) {
             Resource.Loading(data = false)
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
-//
-//    suspend fun getOptionsByQuestion(questionId: Int): List<OptionResponse> {
-//        return api.getOptionsByQuestion(questionId)
-//    }
-//
-//    suspend fun getResults(): List<ResultResponse>{
-//        return api.getResults()
-//    }
-//
-//    suspend fun getResultById(id: Int): ResultResponse {
-//        return api.getResultById(id)
-//    }
