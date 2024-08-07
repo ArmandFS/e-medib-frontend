@@ -1,5 +1,6 @@
 package com.example.e_medib.utils
 
+//will be adding extra comments for clarity
 // targetnya adalah hubung ke server ubuntu2
 object Constants {
     //const val BASE_URL =
